@@ -1,0 +1,363 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "map_id": "floor2",
+    "floor": 2,
+    "unit": "meter",
+    "coordinate_system": {
+      "origin_node_id": "B0",
+      "origin_position_source": "measurement.raw_position",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "heading_reference": "magnetic_north",
+      "heading_unit": "degree",
+      "heading_convention": "clockwise_from_north",
+      "heading_range": "[0, 360)",
+      "axes": {
+        "positive_x_heading": 300,
+        "negative_x_heading": 120,
+        "positive_y_heading": 210,
+        "negative_y_heading": 30
+      },
+      "note": "원점은 B0의 실측 위치입니다. navigation의 B0는 복도 중심 보정으로 (0, -0.975)에 위치합니다. heading 변환은 지정된 축 방향을 사용합니다."
+    }
+  },
+  "measurement": {
+    "position_reference": "현장 실측 기준",
+    "nodes": [
+      {
+        "id": "B0",
+        "raw_position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "B1",
+        "raw_position": {
+          "x": 2.5,
+          "y": 0
+        }
+      },
+      {
+        "id": "B2",
+        "raw_position": {
+          "x": 23.7,
+          "y": 0
+        }
+      },
+      {
+        "id": "B3",
+        "raw_position": {
+          "x": 44,
+          "y": 0
+        }
+      },
+      {
+        "id": "B4",
+        "raw_position": {
+          "x": 44,
+          "y": -2.25
+        }
+      },
+      {
+        "id": "B5",
+        "raw_position": {
+          "x": 2.5,
+          "y": 4.2
+        }
+      },
+      {
+        "id": "B6",
+        "raw_position": {
+          "x": 44.0,
+          "y": 30.0
+        }
+      }
+    ],
+    "corridors": [
+      {
+        "id": "C0",
+        "node_ids": [
+          "B0",
+          "B1",
+          "B2",
+          "B3"
+        ],
+        "width": 1.95,
+        "direction": "+X",
+        "heading": 300
+      },
+      {
+        "id": "C1",
+        "node_ids": [
+          "B1",
+          "B5"
+        ],
+        "width": 2.55,
+        "direction": "+Y",
+        "heading": 210
+      },
+      {
+        "id": "C2",
+        "node_ids": [
+          "B3",
+          "B4"
+        ],
+        "width": 2.8,
+        "direction": "-Y",
+        "heading": 30
+      },
+      {
+        "id": "C3",
+        "node_ids": [
+          "B3",
+          "B6"
+        ],
+        "width": 2.8,
+        "direction": "+Y",
+        "heading": 210,
+        "heading_backward": 30,
+        "walkable": true,
+        "width_profile": {
+          "default_width": 2.8,
+          "restricted_segments": [
+            {
+              "width": 2.0,
+              "start_distance": null,
+              "end_distance": null,
+              "reason": "pillar",
+              "measured": false
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "navigation": {
+    "position_reference": "corridor_centerline",
+    "distance_calculation": "euclidean_from_navigation_positions",
+    "edge_convention": "Each edge is traversable in both directions; heading.forward is from-to and heading.reverse is to-from.",
+    "nodes": [
+      {
+        "id": "B0",
+        "type": "anchor",
+        "description": "엘리베이터 앞",
+        "position": {
+          "x": 0,
+          "y": -0.975
+        },
+        "images": [],
+        "poi_type": "elevator_front"
+      },
+      {
+        "id": "B1",
+        "type": "intersection",
+        "description": "주 복도와 206호 방향 복도의 교차점",
+        "position": {
+          "x": 3.775,
+          "y": -0.975
+        },
+        "images": []
+      },
+      {
+        "id": "B2",
+        "type": "intersection",
+        "description": "실제 갈림길; 현재 테스트에서는 추가 분기 미사용",
+        "position": {
+          "x": 23.7,
+          "y": -0.975
+        },
+        "images": [],
+        "has_additional_branch": true,
+        "additional_branch_enabled": false
+      },
+      {
+        "id": "B3",
+        "type": "intersection",
+        "description": "주 복도와 엘리베이터 출구 방향 복도의 교차점",
+        "position": {
+          "x": 42.6,
+          "y": -0.975
+        },
+        "images": []
+      },
+      {
+        "id": "B4",
+        "type": "anchor",
+        "description": "엘리베이터 출구 방향 복도 중심점",
+        "position": {
+          "x": 42.6,
+          "y": -2.25
+        },
+        "images": [],
+        "poi_type": "elevator_exit"
+      },
+      {
+        "id": "B5",
+        "type": "destination",
+        "description": "206호 강의실 문 앞 복도 중심점",
+        "position": {
+          "x": 3.775,
+          "y": 4.2
+        },
+        "images": [],
+        "poi_type": "classroom_door",
+        "room_number": "206"
+      },
+      {
+        "id": "B6",
+        "floor": 2,
+        "type": "door",
+        "description": "237호",
+        "position": {
+          "x": 42.6,
+          "y": 29.025
+        },
+        "images": [],
+        "poi_type": "classroom_door",
+        "room_number": "237"
+      }
+    ],
+    "edges": [
+      {
+        "id": "B0-B1",
+        "from": "B0",
+        "to": "B1",
+        "corridor_id": "C0",
+        "bidirectional": true,
+        "walkable": true,
+        "distance": 3.775,
+        "heading": {
+          "forward": 300,
+          "reverse": 120
+        }
+      },
+      {
+        "id": "B1-B2",
+        "from": "B1",
+        "to": "B2",
+        "corridor_id": "C0",
+        "bidirectional": true,
+        "walkable": true,
+        "distance": 19.925,
+        "heading": {
+          "forward": 300,
+          "reverse": 120
+        }
+      },
+      {
+        "id": "B2-B3",
+        "from": "B2",
+        "to": "B3",
+        "corridor_id": "C0",
+        "bidirectional": true,
+        "walkable": true,
+        "distance": 18.9,
+        "heading": {
+          "forward": 300,
+          "reverse": 120
+        }
+      },
+      {
+        "id": "B1-B5",
+        "from": "B1",
+        "to": "B5",
+        "corridor_id": "C1",
+        "bidirectional": true,
+        "walkable": true,
+        "distance": 5.175,
+        "heading": {
+          "forward": 210,
+          "reverse": 30
+        }
+      },
+      {
+        "id": "B3-B4",
+        "from": "B3",
+        "to": "B4",
+        "corridor_id": "C2",
+        "bidirectional": true,
+        "walkable": true,
+        "distance": 1.275,
+        "heading": {
+          "forward": 30,
+          "reverse": 210
+        }
+      },
+      {
+        "id": "B3-B6",
+        "from": "B3",
+        "to": "B6",
+        "corridor_id": "C3",
+        "bidirectional": true,
+        "walkable": true,
+        "distance": 30.0,
+        "distance_source": "measured_centerline",
+        "heading": {
+          "forward": 210,
+          "reverse": 30
+        }
+      }
+    ]
+  },
+  "image_metadata_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Node image metadata",
+    "description": "navigation.nodes[].images의 각 항목에 적용되는 확장 가능한 스키마입니다. 빈 배열은 이미지가 아직 등록되지 않았음을 의미합니다.",
+    "type": "object",
+    "properties": {
+      "id": {
+        "description": "이미지 식별자",
+        "type": "string"
+      },
+      "file": {
+        "description": "이미지 파일명",
+        "type": "string"
+      },
+      "path": {
+        "description": "이 JSON 파일 기준 상대 경로 또는 절대 경로/URL",
+        "type": "string"
+      },
+      "direction": {
+        "description": "촬영 방향 또는 시야 설명",
+        "type": "string"
+      },
+      "heading": {
+        "exclusiveMaximum": 360,
+        "minimum": 0,
+        "type": "number",
+        "description": "카메라 시선 방향, magnetic north 기준 시계방향 degree"
+      },
+      "caption": {
+        "type": "string"
+      },
+      "mime_type": {
+        "type": "string"
+      },
+      "captured_at": {
+        "format": "date-time",
+        "type": "string"
+      },
+      "position_source": {
+        "description": "촬영 위치가 대응하는 좌표 종류",
+        "enum": [
+          "measurement.raw_position",
+          "navigation.position"
+        ],
+        "type": "string"
+      },
+      "extra_metadata": {
+        "additionalProperties": true,
+        "type": "object"
+      }
+    },
+    "required": [
+      "id",
+      "path"
+    ],
+    "additionalProperties": true
+  }
+}
