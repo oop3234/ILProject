@@ -21,7 +21,7 @@
         "positive_y_heading": 210,
         "negative_y_heading": 30
       },
-      "note": "원점은 B0의 실측 위치입니다. navigation의 B0는 복도 중심 보정으로 (0, -0.975)에 위치합니다. heading 변환은 지정된 축 방향을 사용합니다."
+      "note": "원점은 B0의 실측 및 navigation 위치 (0, 0)입니다. 최신 측정값 기준으로 raw_position과 navigation.position을 동일하게 사용하며 별도의 복도 중심 보정은 적용하지 않습니다. heading 변환은 지정된 축 방향을 사용합니다."
     }
   },
   "measurement": {
@@ -30,49 +30,49 @@
       {
         "id": "B0",
         "raw_position": {
-          "x": 0,
-          "y": 0
+          "x": 0.0,
+          "y": 0.0
         }
       },
       {
         "id": "B1",
         "raw_position": {
           "x": 2.5,
-          "y": 0
+          "y": 0.0
         }
       },
       {
         "id": "B2",
         "raw_position": {
-          "x": 23.7,
-          "y": 0
+          "x": 25.7,
+          "y": 0.0
         }
       },
       {
         "id": "B3",
         "raw_position": {
-          "x": 44,
-          "y": 0
+          "x": 46.0,
+          "y": 0.0
         }
       },
       {
         "id": "B4",
         "raw_position": {
-          "x": 44,
-          "y": -2.25
+          "x": 46.0,
+          "y": -22.5
         }
       },
       {
         "id": "B5",
         "raw_position": {
           "x": 2.5,
-          "y": 4.2
+          "y": 25.2
         }
       },
       {
         "id": "B6",
         "raw_position": {
-          "x": 44.0,
+          "x": 46.0,
           "y": 30.0
         }
       }
@@ -143,82 +143,110 @@
     "nodes": [
       {
         "id": "B0",
-        "type": "anchor",
+        "type": "elevator",
         "description": "엘리베이터 앞",
         "position": {
-          "x": 0,
-          "y": -0.975
+          "x": 0.0,
+          "y": 0.0
         },
         "images": [],
-        "poi_type": "elevator_front"
+        "poi_type": "elevator_front",
+        "visual_localization": {
+          "enabled": true,
+          "image_set_id": "B0"
+        }
       },
       {
         "id": "B1",
-        "type": "intersection",
-        "description": "주 복도와 206호 방향 복도의 교차점",
+        "type": "junction",
+        "description": "교차로",
         "position": {
-          "x": 3.775,
-          "y": -0.975
+          "x": 2.5,
+          "y": 0.0
         },
-        "images": []
+        "images": [],
+        "visual_localization": {
+          "enabled": true,
+          "image_set_id": "B1"
+        }
       },
       {
         "id": "B2",
-        "type": "intersection",
-        "description": "실제 갈림길; 현재 테스트에서는 추가 분기 미사용",
+        "type": "junction",
+        "description": "교차로",
         "position": {
-          "x": 23.7,
-          "y": -0.975
+          "x": 25.7,
+          "y": 0.0
         },
         "images": [],
         "has_additional_branch": true,
-        "additional_branch_enabled": false
+        "additional_branch_enabled": false,
+        "visual_localization": {
+          "enabled": true,
+          "image_set_id": "B2"
+        }
       },
       {
         "id": "B3",
-        "type": "intersection",
-        "description": "주 복도와 엘리베이터 출구 방향 복도의 교차점",
+        "type": "junction",
+        "description": "교차로",
         "position": {
-          "x": 42.6,
-          "y": -0.975
+          "x": 46.0,
+          "y": 0.0
         },
-        "images": []
+        "images": [],
+        "visual_localization": {
+          "enabled": true,
+          "image_set_id": "B3"
+        }
       },
       {
         "id": "B4",
-        "type": "anchor",
-        "description": "엘리베이터 출구 방향 복도 중심점",
+        "type": "elevator",
+        "description": "엘리베이터 앞",
         "position": {
-          "x": 42.6,
-          "y": -2.25
+          "x": 46.0,
+          "y": -22.5
         },
         "images": [],
-        "poi_type": "elevator_exit"
+        "poi_type": "elevator_exit",
+        "visual_localization": {
+          "enabled": true,
+          "image_set_id": "B4"
+        }
       },
       {
         "id": "B5",
-        "type": "destination",
-        "description": "206호 강의실 문 앞 복도 중심점",
+        "type": "door",
+        "description": "206호 앞",
         "position": {
-          "x": 3.775,
-          "y": 4.2
+          "x": 2.5,
+          "y": 25.2
         },
         "images": [],
         "poi_type": "classroom_door",
-        "room_number": "206"
+        "room_number": "206",
+        "visual_localization": {
+          "enabled": true,
+          "image_set_id": "B5"
+        }
       },
       {
         "id": "B6",
         "floor": 2,
         "type": "door",
-        "description": "237호",
+        "description": "237호 앞",
         "position": {
-          "x": 42.6,
-          "y": 29.025
+          "x": 46.0,
+          "y": 30.0
         },
         "images": [],
         "poi_type": "classroom_door",
-        "room_number": "237"
+        "room_number": "237",
+        "visual_localization": {
+          "enabled": true,
+          "image_set_id": "B6"
+        }
       }
     ],
     "edges": [
@@ -229,7 +257,7 @@
         "corridor_id": "C0",
         "bidirectional": true,
         "walkable": true,
-        "distance": 3.775,
+        "distance": 2.5,
         "heading": {
           "forward": 300,
           "reverse": 120
@@ -242,7 +270,7 @@
         "corridor_id": "C0",
         "bidirectional": true,
         "walkable": true,
-        "distance": 19.925,
+        "distance": 23.2,
         "heading": {
           "forward": 300,
           "reverse": 120
@@ -255,7 +283,7 @@
         "corridor_id": "C0",
         "bidirectional": true,
         "walkable": true,
-        "distance": 18.9,
+        "distance": 20.3,
         "heading": {
           "forward": 300,
           "reverse": 120
@@ -268,7 +296,7 @@
         "corridor_id": "C1",
         "bidirectional": true,
         "walkable": true,
-        "distance": 5.175,
+        "distance": 25.2,
         "heading": {
           "forward": 210,
           "reverse": 30
@@ -281,7 +309,7 @@
         "corridor_id": "C2",
         "bidirectional": true,
         "walkable": true,
-        "distance": 1.275,
+        "distance": 22.5,
         "heading": {
           "forward": 30,
           "reverse": 210
